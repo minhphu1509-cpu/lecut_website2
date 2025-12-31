@@ -1,0 +1,7 @@
+{
+  "name": "LuxeCut Barbershop & Grooming Spa",
+  "description": "A premium grooming experience featuring AI-powered style consultations and a curated selection of luxury services.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

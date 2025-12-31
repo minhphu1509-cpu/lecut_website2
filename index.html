@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCut | Modern Heritage Grooming</title>
+    <meta name="description" content="Trải nghiệm cắt tóc và chăm sóc quý ông đẳng cấp với sự hỗ trợ của AI.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: {
+                DEFAULT: '#d4af37',
+                dark: '#b8860b',
+                light: '#f5e6ab'
+              },
+              dark: {
+                DEFAULT: '#1a1a1a',
+                lighter: '#2a2a2a',
+                deep: '#0a0a0a'
+              },
+              cream: '#fffaf0'
+            },
+            fontFamily: {
+              fira: ['Fira Sans', 'sans-serif'],
+              inter: ['Inter', 'sans-serif'],
+              playfair: ['Playfair Display', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #0a0a0a;
+        color: #fffaf0;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0a0a0a; }
+      ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+      
+      .custom-cursor {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #d4af37;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.15s ease-out;
+      }
+      .custom-cursor-dot {
+        width: 4px;
+        height: 4px;
+        background: #d4af37;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      @media (max-width: 1024px) {
+        .custom-cursor, .custom-cursor-dot { display: none; }
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
+</head>
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div id="root"></div>
+    
+    <!-- Điểm nhúng chính cho ứng dụng React -->
+    <script type="module" src="/index.tsx"></script>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const dot = document.getElementById('cursor-dot');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+            dot.style.left = e.clientX - 2 + 'px';
+            dot.style.top = e.clientY - 2 + 'px';
+        });
+        document.addEventListener('mousedown', () => cursor.style.transform += ' scale(0.8)');
+        document.addEventListener('mouseup', () => cursor.style.transform = cursor.style.transform.replace(' scale(0.8)', ''));
+    </script>
+</body>
+</html>
