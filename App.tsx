@@ -1,14 +1,18 @@
 
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
-import { HashRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Facebook, Instagram, Twitter, MapPin, Phone, Clock as ClockIcon, ArrowRight, Languages, Calendar, ShieldCheck, Construction } from 'lucide-react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+// Fix: Import standard React Router v6 components and hooks
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Menu, X, Facebook, Instagram, Twitter, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+
+// Fix: Removed .tsx extensions from internal component imports to resolve potential module resolution issues
 import { Hero } from './components/Hero';
 import { ServiceCard } from './components/ServiceCard';
 import { Consultation } from './components/Consultation';
 import { AdminDashboard } from './components/AdminDashboard';
 import { BookingModal } from './components/BookingModal';
 import { ConciergeAI } from './components/ConciergeAI';
+
 import { SERVICES as INITIAL_SERVICES } from './constants';
 import { Language, Service, SocialLinks } from './types';
 import { translations as INITIAL_TRANSLATIONS } from './translations';
@@ -47,7 +51,6 @@ const AppContext = createContext<{
 
 export const useApp = () => useContext(AppContext);
 
-// Fixed: Added optionality to children in NavItem props to resolve JSX children mapping errors in TypeScript (Line 52)
 const NavItem = ({ href, children, isActive }: { href: string; children?: React.ReactNode; isActive: boolean }) => {
   return (
     <motion.a
